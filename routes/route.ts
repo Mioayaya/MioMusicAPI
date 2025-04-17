@@ -1,24 +1,30 @@
-import { Router } from "@oak/oak";
+import { Context, Router } from "@oak/oak";
+import { getHome } from "../services/home.ts";
+import { createUser, getUser } from "../services/user.ts";
 
 const router = new Router();
 
-router
-  .get("/", async (ctx) => {
-    const html = await Deno.readTextFile("./pages/index.html");
-    ctx.response.type = "html";
-    ctx.response.body = html;
-  });
+// 后端页面
+router.get("/", getHome);
 
+// user相关
 router
-  .get("/users", (ctx) => {
-    ctx.response.body = [{ id: 1, name: "Bob" }];
-  })
-  
-  // deno-lint-ignore no-explicit-any
-  .post("/users", async (ctx: any) => {
-    const body = await ctx.request.body().value;
-    ctx.response.status = 201;
-    ctx.response.body = { created: true, ...body };
-  });
+  .get("/users", getUser)
+  .post("/users", createUser);
+
+router.get("/test", async (ctx: Context) => {
+  const res = await fetch("https://www.bilibili.com/");
+
+  const fullResponse = {
+    url: res.url,
+    status: res.status,
+    statusText: res.statusText,
+    headers: Object.fromEntries(res.headers.entries()), // 转换 headers
+  };
+
+  ctx.response.status = 200;
+  ctx.response.type = "json";
+  ctx.response.body = fullResponse;
+});
 
 export default router;
