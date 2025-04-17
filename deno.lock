@@ -8,6 +8,7 @@
     "jsr:@std/assert@1": "1.0.12",
     "jsr:@std/bytes@1": "1.0.5",
     "jsr:@std/crypto@1": "1.0.4",
+    "jsr:@std/dotenv@~0.225.3": "0.225.3",
     "jsr:@std/encoding@1": "1.0.9",
     "jsr:@std/encoding@^1.0.9": "1.0.9",
     "jsr:@std/http@1": "1.0.14",
@@ -60,6 +61,9 @@
     },
     "@std/crypto@1.0.4": {
       "integrity": "cee245c453bd5366207f4d8aa25ea3e9c86cecad2be3fefcaa6cb17203d79340"
+    },
+    "@std/dotenv@0.225.3": {
+      "integrity": "a95e5b812c27b0854c52acbae215856d9cce9d4bbf774d938c51d212711e8d4a"
     },
     "@std/encoding@1.0.9": {
       "integrity": "025b8f18eb1749bc30d1353bf48b77d1eb5e35610220fa226f5a046b9240c5d7"
@@ -237,7 +241,8 @@
     "dependencies": [
       "jsr:@oak/oak@^17.1.4",
       "jsr:@razr/http@^0.0.0",
-      "jsr:@std/assert@1"
+      "jsr:@std/assert@1",
+      "jsr:@std/dotenv@~0.225.3"
     ]
   }
 }
